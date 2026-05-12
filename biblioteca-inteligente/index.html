@@ -134,6 +134,8 @@
                     <option value="Físico">Apenas Físico</option>
                 </select>
             </div>
+            <button class="btn" style="flex: 1; min-width: 250px;" onclick="mostrarTodoAcervo()"><i class="fa-solid fa-book-open"></i> Ver todos os livros do acervo</button>
+            <button class="btn" style="flex: 1; min-width: 200px; background-color: var(--success);" onclick="carregarDashboard()"><i class="fa-solid fa-book-bookmark"></i> Minha Biblioteca</button>
         </div>
 
         <!-- CONTEÚDO NORMAL DO DASHBOARD -->
@@ -291,12 +293,22 @@
             // Modo Busca Global (Procura título/autor dentro do acervo filtrado)
             document.getElementById('dashboard-content').classList.add('hidden');
             document.getElementById('busca-content').classList.remove('hidden');
+            document.querySelector('#busca-content h3').innerHTML = '<i class="fa-solid fa-list"></i> Resultados da Busca';
 
             const resultados = acervoFiltrado.filter(l =>
                 l.titulo.toLowerCase().includes(termo) || l.autor.toLowerCase().includes(termo)
             );
             renderizarGrid(resultados, 'resultados-busca-container', "Nenhum livro encontrado com esse nome e formato.");
         }
+    }
+
+    function mostrarTodoAcervo() {
+        document.getElementById('busca-livro').value = '';
+        document.getElementById('filtro-formato').value = 'Todos';
+        document.getElementById('dashboard-content').classList.add('hidden');
+        document.getElementById('busca-content').classList.remove('hidden');
+        document.querySelector('#busca-content h3').innerHTML = '<i class="fa-solid fa-book-journal-whills"></i> Todo o Acervo';
+        renderizarGrid(bancoDeLivros, 'resultados-busca-container', "Nenhum livro cadastrado no acervo.");
     }
 
     function renderizarGrid(livros, containerId, msgVazio) {
@@ -308,6 +320,12 @@
         }
         livros.forEach(livro => {
             const icon = livro.formato === 'Digital' ? '<i class="fa-solid fa-tablet-screen-button"></i>' : '<i class="fa-solid fa-book"></i>';
+            const tagsHtml = livro.tags ? `
+                                <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; padding-top: 10px;">
+                                    ${livro.tags.slice(0, 2).map(tag => `<span style="font-size: 0.65rem; background: var(--bg-color); padding: 3px 8px; border-radius: 12px; color: var(--text-muted); border: 1px solid var(--border);">${tag}</span>`).join('')}
+                                    ${livro.tags.length > 2 ? `<span style="font-size: 0.65rem; background: var(--bg-color); padding: 3px 8px; border-radius: 12px; color: var(--text-muted); border: 1px solid var(--border);">+${livro.tags.length - 2}</span>` : ''}
+                                </div>` : '';
+
             container.innerHTML += `
                     <div class="book-card" onclick="abrirPaginaDoLivro(${livro.id})">
                         <span class="book-format-badge">${icon}</span>
@@ -315,6 +333,7 @@
                         <div class="book-info">
                             <h4 class="book-title">${livro.titulo}</h4>
                             <div class="book-author">${livro.autor}</div>
+                            ${tagsHtml}
                         </div>
                     </div>
                 `;
