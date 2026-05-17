@@ -12,26 +12,37 @@
             --accent-hover: #4338ca; --card-bg: #ffffff; --text-main: #1e293b;
             --text-muted: #64748b; --border: #e2e8f0; --success: #10b981;
         }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; display: flex; justify-content: center; min-height: 100vh; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text-main); margin: 0; display: flex; justify-content: center; min-height: 100vh; 
+        }
         .hidden { display: none !important; }
         .app-container { width: 100%; max-width: 1100px; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
         .view { width: 100%; display: flex; flex-direction: column; align-items: center; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* PAINEIS GERAIS */
-        .card-panel { background: var(--card-bg); padding: 40px; border-radius: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); width: 100%; max-width: 450px; box-sizing: border-box; }
+        .card-panel { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 40px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
+            width: 100%; max-width: 450px; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, 0.5); 
+        }
         .logo-header { text-align: center; margin-bottom: 30px; }
         .logo-header i { font-size: 3rem; color: var(--accent); margin-bottom: 15px; }
         .logo-header h1 { margin: 0; font-size: 1.5rem; color: var(--primary); }
 
         .input-wrapper { position: relative; margin-bottom: 15px; width: 100%;}
         .input-wrapper i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-        .input-wrapper input, .input-wrapper select { width: 100%; padding: 12px 12px 12px 40px; border: 1px solid var(--border); border-radius: 12px; box-sizing: border-box; font-size: 1rem; font-family: 'Inter', sans-serif; background: var(--card-bg); }
+        .input-wrapper input, .input-wrapper select { height: 50px; width: 100%; padding: 10px 35px 10px 40px; border: 1px solid var(--border); border-radius: 12px; box-sizing: border-box; font-size: 1rem; font-family: 'Inter', sans-serif; background: var(--card-bg); text-overflow: ellipsis; }
         .input-wrapper input:focus, .input-wrapper select:focus { outline: none; border-color: var(--accent); }
 
-        .btn { background-color: var(--accent); color: white; border: none; padding: 14px 24px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
+        .btn { height: 50px; background-color: var(--accent); color: white; border: none; padding: 0 24px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; box-sizing: border-box; }
         .btn:hover { background-color: var(--accent-hover); }
         .btn-danger { background-color: #ef4444; } .btn-danger:hover { background-color: #dc2626; }
+        .link-btn { background: transparent; color: var(--accent); border: none; font-weight: 600; cursor: pointer; padding: 10px; margin-top: 10px; width: 100%; font-size: 0.95rem; }
+        .link-btn:hover { text-decoration: underline; }
 
         .tags-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 25px 0; justify-content: center; }
         .tag { padding: 10px 20px; border: 1px solid var(--border); border-radius: 30px; cursor: pointer; font-weight: 500; }
@@ -45,7 +56,8 @@
         .user-info p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
         .logout-btn { background: transparent; border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; cursor: pointer; }
 
-        .filters-bar { width: 100%; display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .filters-bar { width: 100%; display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; align-items: center; }
+        .filters-bar .input-wrapper { margin-bottom: 0; }
         .search-box { flex: 2; min-width: 250px;}
         .filter-box { flex: 1; min-width: 150px;}
 
@@ -53,8 +65,8 @@
         .section-title { width: 100%; font-size: 1.3rem; color: var(--primary); margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px;}
         .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; width: 100%; margin-bottom: 40px;}
 
-        .book-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); position: relative; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: 0.2s; }
-        .book-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -10px rgba(0,0,0,0.15); }
+        .book-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); position: relative; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: all 0.3s ease; transform-style: preserve-3d; }
+        .book-card:hover { transform: translateY(-10px) rotateX(2deg) rotateY(-2deg) scale(1.02); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); }
         .book-cover { width: 100%; aspect-ratio: 2/3; object-fit: cover; background-color: #e2e8f0; border-bottom: 1px solid var(--border); }
         .book-format-badge { position: absolute; top: 10px; right: 10px; background: rgba(15, 23, 42, 0.85); color: white; font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
         .book-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
@@ -73,9 +85,20 @@
         .details-description { font-size: 1.05rem; line-height: 1.6; color: #475569; margin-bottom: 30px; }
         .btn-voltar { background: transparent; color: var(--text-muted); border: none; font-size: 1rem; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; padding: 0; }
         .btn-voltar:hover { color: var(--primary); }
+
+        /* TOAST E LOADER */
+        .toast { position: fixed; bottom: 30px; right: 30px; background: var(--success); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); display: flex; align-items: center; gap: 12px; font-weight: 600; transform: translateY(100px); opacity: 0; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 1000; }
+        .toast.show { transform: translateY(0); opacity: 1; }
+
+        .loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(248, 250, 252, 0.8); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .loader-overlay.active { opacity: 1; pointer-events: all; }
+        .spinner { width: 50px; height: 50px; border: 5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
+
+<div id="loader" class="loader-overlay"><div class="spinner"></div></div>
 
 <div class="app-container">
 
@@ -95,6 +118,27 @@
                 <input type="password" id="login-senha" placeholder="Sua senha">
             </div>
             <button class="btn" onclick="fazerLogin()">Entrar <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="link-btn" onclick="mostrarTela('view-cadastro')">Não tem conta? Cadastre-se</button>
+        </div>
+    </div>
+
+    <!-- TELA 1.5: CADASTRO -->
+    <div id="view-cadastro" class="view hidden">
+        <div class="card-panel">
+            <div class="logo-header">
+                <i class="fa-solid fa-user-plus"></i>
+                <h1>Criar Conta</h1><p>Junte-se à Biblioteca Inteligente</p>
+            </div>
+            <div class="input-wrapper">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" id="cadastro-email" placeholder="Seu melhor email">
+            </div>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="cadastro-senha" placeholder="Crie uma senha">
+            </div>
+            <button class="btn" onclick="fazerCadastro()">Criar Conta <i class="fa-solid fa-check"></i></button>
+            <button class="link-btn" onclick="mostrarTela('view-login')">Já tem conta? Faça login</button>
         </div>
     </div>
 
@@ -184,6 +228,34 @@
     const interessesSelecionados = new Set();
     let usuarioAtual = null;
     let livroAbertoAtual = null;
+    let bancoUsuarios = JSON.parse(localStorage.getItem('sysLibraryDB')) || {};
+
+    function salvarUsuarioAtual() {
+        bancoUsuarios[usuarioAtual.email] = usuarioAtual;
+        localStorage.setItem('sysLibraryDB', JSON.stringify(bancoUsuarios));
+    }
+
+    function showToast(mensagem, cor = 'var(--success)', icon = 'fa-check-circle') {
+        let toast = document.getElementById('sys-toast');
+        if(!toast) {
+            toast = document.createElement('div');
+            toast.id = 'sys-toast';
+            toast.className = 'toast';
+            document.body.appendChild(toast);
+        }
+        toast.style.background = cor;
+        toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${mensagem}`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function showLoader(ms, callback) {
+        document.getElementById('loader').classList.add('active');
+        setTimeout(() => {
+            document.getElementById('loader').classList.remove('active');
+            callback();
+        }, ms);
+    }
 
     async function inicializarApp() {
         try {
@@ -205,12 +277,14 @@
     }
 
     function verificarSessao() {
-        const usuarioSalvo = localStorage.getItem('usuarioSysLibrary');
-        if (usuarioSalvo) {
-            usuarioAtual = JSON.parse(usuarioSalvo);
+        const emailLogado = localStorage.getItem('sysLibraryLogado');
+        if (emailLogado && bancoUsuarios[emailLogado]) {
+            usuarioAtual = bancoUsuarios[emailLogado];
             if (usuarioAtual.interesses.length > 0) carregarDashboard();
             else mostrarTela('view-onboarding');
-        } else { mostrarTela('view-login'); }
+        } else { 
+            mostrarTela('view-login'); 
+        }
     }
 
     function fazerLogin() {
@@ -218,10 +292,45 @@
         const senha = document.getElementById('login-senha').value.trim();
         if(!email || !senha) { alert("Preencha email e senha!"); return; }
 
-        const nome = email.split('@')[0].toUpperCase();
-        usuarioAtual = { email: email, nome: nome, interesses: [], estante: [] };
-        localStorage.setItem('usuarioSysLibrary', JSON.stringify(usuarioAtual));
-        mostrarTela('view-onboarding');
+        showLoader(1200, () => {
+            const user = bancoUsuarios[email];
+            if (user && user.senha === senha) {
+                usuarioAtual = user;
+                localStorage.setItem('sysLibraryLogado', email);
+                if (usuarioAtual.interesses.length > 0) {
+                    carregarDashboard();
+                } else {
+                    mostrarTela('view-onboarding');
+                }
+            } else {
+                alert("Email não encontrado ou senha incorreta!");
+            }
+        });
+    }
+
+    function fazerCadastro() {
+        const email = document.getElementById('cadastro-email').value.trim();
+        const senha = document.getElementById('cadastro-senha').value.trim();
+        if(!email || !senha) { alert("Preencha todos os campos!"); return; }
+
+        showLoader(1200, () => {
+            if (bancoUsuarios[email]) {
+                alert("Este email já está cadastrado!");
+                return;
+            }
+
+            const nome = email.split('@')[0].toUpperCase();
+            usuarioAtual = { email: email, senha: senha, nome: nome, interesses: [], estante: [] };
+            salvarUsuarioAtual();
+            localStorage.setItem('sysLibraryLogado', email);
+            
+            // Resetar cache visual das tags
+            interessesSelecionados.clear();
+            document.querySelectorAll('.tag.active').forEach(t => t.classList.remove('active'));
+
+            mostrarTela('view-onboarding');
+            showToast("Conta criada com sucesso! Selecione seus interesses.");
+        });
     }
 
     function renderizarTagsDeOnboarding(tags) {
@@ -240,16 +349,21 @@
     }
 
     function salvarInteressesEIrParaDashboard() {
-        usuarioAtual.interesses = Array.from(interessesSelecionados);
-        localStorage.setItem('usuarioSysLibrary', JSON.stringify(usuarioAtual));
-        carregarDashboard();
+        showLoader(1000, () => {
+            usuarioAtual.interesses = Array.from(interessesSelecionados);
+            salvarUsuarioAtual();
+            carregarDashboard();
+        });
     }
 
     function fazerLogout() {
-        localStorage.removeItem('usuarioSysLibrary');
+        localStorage.removeItem('sysLibraryLogado');
         usuarioAtual = null; interessesSelecionados.clear();
+        document.querySelectorAll('.tag.active').forEach(t => t.classList.remove('active'));
         document.getElementById('login-email').value = '';
         document.getElementById('login-senha').value = '';
+        document.getElementById('cadastro-email').value = '';
+        document.getElementById('cadastro-senha').value = '';
         mostrarTela('view-login');
     }
 
@@ -304,11 +418,15 @@
 
     function mostrarTodoAcervo() {
         document.getElementById('busca-livro').value = '';
-        document.getElementById('filtro-formato').value = 'Todos';
+        const formatoFiltro = document.getElementById('filtro-formato').value;
+        let acervoFiltrado = bancoDeLivros;
+        if (formatoFiltro !== 'Todos') {
+            acervoFiltrado = acervoFiltrado.filter(l => l.formato === formatoFiltro);
+        }
         document.getElementById('dashboard-content').classList.add('hidden');
         document.getElementById('busca-content').classList.remove('hidden');
         document.querySelector('#busca-content h3').innerHTML = '<i class="fa-solid fa-book-journal-whills"></i> Todo o Acervo';
-        renderizarGrid(bancoDeLivros, 'resultados-busca-container', "Nenhum livro cadastrado no acervo.");
+        renderizarGrid(acervoFiltrado, 'resultados-busca-container', "Nenhum livro cadastrado no acervo com este formato.");
     }
 
     function renderizarGrid(livros, containerId, msgVazio) {
@@ -374,14 +492,16 @@
 
     function adicionarNaEstante() {
         usuarioAtual.estante.push(livroAbertoAtual.id);
-        localStorage.setItem('usuarioSysLibrary', JSON.stringify(usuarioAtual));
+        salvarUsuarioAtual();
         atualizarBotaoSalvar();
+        showToast(`"${livroAbertoAtual.titulo}" adicionado à sua estante!`);
     }
 
     function removerDaEstante() {
         usuarioAtual.estante = usuarioAtual.estante.filter(id => id !== livroAbertoAtual.id);
-        localStorage.setItem('usuarioSysLibrary', JSON.stringify(usuarioAtual));
+        salvarUsuarioAtual();
         atualizarBotaoSalvar();
+        showToast(`"${livroAbertoAtual.titulo}" removido da estante.`, '#ef4444', 'fa-trash');
     }
 
     function voltarParaDashboard() {
